@@ -1,9 +1,15 @@
-import { useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useDaysStatusContext } from '../context/DaysStatusProvider';
+import { useCurrentDayContext } from '../context/CurrentDayProvider';
+import { useFakeCleanContext } from '../context/FakeCleanProvider';
 
-export default function Settings({ setDays, setCurrentDay, setFakeClean, days}){
-    const isDisabled = days[0] === 0
+export default function Settings(){
+    const {daysStatus, setDaysStatus} = useDaysStatusContext();
+    const {setCurrentDay} = useCurrentDayContext();
+    const {setFakeClean} = useFakeCleanContext();
+
+    const isDisabled = daysStatus[0] === 0
     
     function handleFakeClean(state){
         if(state === "enter"){
@@ -37,7 +43,7 @@ export default function Settings({ setDays, setCurrentDay, setFakeClean, days}){
             confirmAlert(options)
             
             function handleClear(){
-                setDays(Array.from({ length: 90}).fill(0))
+                setDaysStatus(Array.from({ length: 90}).fill(0))
                 setCurrentDay(0)
             }
         }

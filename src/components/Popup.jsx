@@ -1,14 +1,21 @@
 import { useState } from "react"
+import { useShowPopupContext } from "../context/ShowPopupProvider";
+import { useDaysStatusContext } from "../context/DaysStatusProvider";
+import { useCurrentDayContext } from "../context/CurrentDayProvider";
 
-export default function Popup({ setPopupStatus, days, currentDay, setCurrentDay}){
+export default function Popup(){
+    const {setShowPopup} = useShowPopupContext();
+    const {daysStatus} = useDaysStatusContext();
+    const {currentDay, setCurrentDay} = useCurrentDayContext();
+
     const [isGreat, setIsGreat] = useState(true)
 
     function handleSubmiButton() {
         var value = isGreat ? "great" : "terrible";
-        days[currentDay] = value;
+        daysStatus[currentDay] = value;
 
         setCurrentDay(curr => curr +1)
-        setPopupStatus(false)
+        setShowPopup(false)
     }
 
     return (
@@ -28,7 +35,7 @@ export default function Popup({ setPopupStatus, days, currentDay, setCurrentDay}
             </div>
 
             <div className="btns">
-                <button id="cancel" onClick={() => setPopupStatus(false)}>cancel</button>
+                <button id="cancel" onClick={() => setShowPopup(false)}>cancel</button>
                 <button id="submit" onClick={handleSubmiButton}>submit</button>
             </div>
         </div>

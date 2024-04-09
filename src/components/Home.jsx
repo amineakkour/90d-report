@@ -1,69 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Popup from "./Popup";
 import Settings from "./Settings";
 import DaysContainer from "./DaysContainer";
 import Statics from "./Statics";
-import getItemFromLocalStorage from "../functions/getItemFromLocalStorage";
 import addItemToLocalStorage from "../functions/addItemToLocalStorage";
+import { useShowPopupContext } from "../context/ShowPopupProvider";
+import { useDaysStatusContext } from "../context/DaysStatusProvider";
+import { useCurrentDayContext } from "../context/CurrentDayProvider";
 
 export default function Home(){
-    const [days, setDays] = useState(getItemFromLocalStorage("days")?.split(","))
-    const [popupStatus, setPopupStatus] = useState(false);
-    const [currentDay, setCurrentDay] = useState(parseInt(getItemFromLocalStorage("currentDayInd")));
-    const [fakeClean, setFakeClean] = useState(false);
+    const { showPopup } = useShowPopupContext();
+    const { daysStatus } = useDaysStatusContext();
+    const { currentDay } = useCurrentDayContext();
 
     useEffect(() => {
-        if(!getItemFromLocalStorage("days") || !getItemFromLocalStorage("currentDayInd")){
-            addItemToLocalStorage("days", Array.from({ length: 90}).fill(0))
-            addItemToLocalStorage("currentDayInd", 0)
-        }
-    }, [])
-
-    useEffect(() => {
-        addItemToLocalStorage("days", days)
+        addItemToLocalStorage("days", daysStatus)
         addItemToLocalStorage("currentDayInd", currentDay)
-    }, [days, currentDay])
+    }, [daysStatus, currentDay])
 
     return (
-        <>
-            {popupStatus && 
-                <Popup 
-                    setCurrentDay={setCurrentDay}
-                    days={days}
-                    currentDay={currentDay}
-                    setPopupStatus={setPopupStatus}
-                />
-            }
+        <div>
+            {showPopup && <Popup /> }
 
             <div id="appContainer">
 
-                <div id="header">
-                    <h1>Ki daz Nharak Albatal?</h1>
-                </div>
+                <div id="header"><h1>Ki daz Nharak Albatal?</h1></div>
 
                 <div id="mainContainer">
-                    <Settings
-                        days={days}
-                        setCurrentDay={setCurrentDay}
-                        setDays={setDays}
-                        setFakeClean={setFakeClean}
-                    />
-                    
-                    <DaysContainer
-                        setPopupStatus={setPopupStatus}
-                        days={days}
-                        currentDay={currentDay}
-                        fakeClean={fakeClean}
-                    />
-                    
-                    <Statics
-                        days={days}
-                        fakeClean={fakeClean}
-                        />
+                    <Settings />
+                    <DaysContainer/>
+                    <Statics />
                 </div>
-
                 
             </div>
-        </>
+        </div>
     )
 }
