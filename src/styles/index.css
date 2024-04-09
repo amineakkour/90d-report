@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --green: green;
+    --gray: #C3C3C3;
+    --red: #F22D1B;
+    --black: #070908;
+    --white: #F2F2F2;
+}
+
+.green-bg{
+    background-color: var(--green);
+}
+
+.red-bg{
+    background-color: var(--red);
+}
+
+.red-clr{
+    color: var(--red);
+}
+
+.green-clr{
+    color: var(--green);
+}
+
+.gray-clr{
+    color: var(--gray);
+}
+
+
+/* BODY */
+
+body{
+    background-color: var(--black);
+    color: var(--white);
+    height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#mainContainer{
+    padding: 20px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+body:has(#howWasYourDayPopup) #appContainer{
+    filter: blur(1px);
+}
+
+#howWasYourDayPopup{
+    z-index: 99;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    color: black;
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    padding: 25px 20px;
+}
+
+#howWasYourDayPopup > *{
+    padding: 5px 0;
+}
+
+#howWasYourDayPopup label {
+    width: 90px;
+    display: inline-block;
+}
+
+#howWasYourDayPopup button{
+    background-color: transparent;
+    color: var(--black);
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+#howWasYourDayPopup label{
+    display: inline-block;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+#howWasYourDayPopup button{
+    cursor: pointer;
+    transition: .4s;
+}
+
+#howWasYourDayPopup button#cancel:hover{
+    background-color: var(--red);
+    border-color: var(--red);
+}
+
+#howWasYourDayPopup button#submit{
+    background-color: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+}
+
+#howWasYourDayPopup button#submit:hover{
+    background-color: transparent;
+    border-color: var(--green);
+    color: var(--green);
+}
+
+#howWasYourDayPopup .btns{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+#setting{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    padding: 5px 0;
+}
+
+#setting #clear{
+    background-color: transparent;
+    border: 0px;
+    background-color: var(--red);
+    color: var(--white);
+    cursor: pointer;
+    padding: 5px;
+}
+
+#setting #clear.disabledClearButton{
+    background-color: gray;
+    cursor: default;
+}
+
+#setting #clear:hover{
+    text-decoration: underlinef;
+}
+
+#daysContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#daysContainer .day-box{
+    margin: 5px;
+    flex-shrink: 0;
+    border: 1px solid var(--black);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gray);
+}
+
+.day-box.active{
+    cursor: pointer;
+    outline: 1px solid var(--black);
+    color: var(--black) !important;
+}
+
+#staticsList ul{
+    margin-top: 5px;
+    padding: 5px 2px;
+    background-color: rgba(0, 0, 0, 0.03);
+    display: flex;
+    gap: 10px;
+}
+
+#staticsList ul li{
+    display: inline-block;
+}
+
+#staticsList ul li span{
+    font-weight: bold;
+}
+
+@media screen and (max-width: 650px) {
+    body{
+        padding: 30px;
+    }
+    
+}
