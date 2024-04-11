@@ -47,6 +47,10 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+h1{
+    margin-bottom: 20px;
+}
+
 #mainContainer{
     padding: 20px;
     color: var(--black);
@@ -64,6 +68,7 @@ body:has(#howWasYourDayPopup) #appContainer{
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
+    max-width: 100%;
     color: black;
     background-color: var(--white);
     border: 2px solid var(--black);
@@ -75,7 +80,8 @@ body:has(#howWasYourDayPopup) #appContainer{
 }
 
 #howWasYourDayPopup label {
-    width: 90px;
+    max-width: 90px;
+    width: 50%;
     display: inline-block;
 }
 
@@ -98,7 +104,7 @@ body:has(#howWasYourDayPopup) #appContainer{
     transition: .4s;
 }
 
-#howWasYourDayPopup button#cancel:hover{
+button#cancel:hover, button#cancel:active{
     background-color: var(--red);
     border-color: var(--red);
 }
@@ -124,7 +130,6 @@ body:has(#howWasYourDayPopup) #appContainer{
 #setting{
     display: flex;
     justify-content: end;
-    gap: 10px;
     padding: 5px 0;
 }
 
@@ -135,6 +140,11 @@ body:has(#howWasYourDayPopup) #appContainer{
     color: var(--white);
     cursor: pointer;
     padding: 5px;
+    outline: 0;
+}
+
+#setting #clear:focus{
+    color: var(--black);
 }
 
 #setting #clear.disabledClearButton{
@@ -142,8 +152,8 @@ body:has(#howWasYourDayPopup) #appContainer{
     cursor: default;
 }
 
-#setting #clear:hover{
-    text-decoration: underlinef;
+#setting #clear:hover, #setting #clear:active{
+    color: black;
 }
 
 #daysContainer{

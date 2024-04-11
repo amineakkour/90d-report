@@ -1,0 +1,71 @@
+@media only screen and (max-width: 800px) {
+
+  body{
+    font-size: 12px;
+  }
+
+  h1{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  #mainContainer{
+    padding: 10px;
+}
+
+#howWasYourDayPopup button{
+    padding: 5px;
+    width: 100%;
+    font-size: 10px;
+}
+
+#howWasYourDayPopup label{
+    display: inline-block;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+#howWasYourDayPopup button{
+    cursor: pointer;
+    transition: .4s;
+}
+
+#howWasYourDayPopup button#cancel:hover{
+    background-color: var(--red);
+    border-color: var(--red);
+}
+
+#howWasYourDayPopup button#submit{
+    background-color: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+}
+
+#howWasYourDayPopup .btns{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+#setting #clear{
+    padding: 5px;
+    font-size: 10px;
+}
+
+#daysContainer .day-box{
+    margin: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+#staticsList ul{
+    padding: 2px;
+    gap: 5px;
+    font-size: 10px;
+}
+
+#staticsList ul li span{
+    font-weight: bold;
+}
+
+}
